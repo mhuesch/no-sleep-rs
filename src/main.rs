@@ -15,7 +15,11 @@ fn main() {
         enigo.key_click(Key::Control);
         key_presses_count += 1;
 
-        println!("elapsed time: {}s, # key cycles: {}", now.elapsed().as_secs(), key_presses_count);
+        println!(
+            "elapsed time: {}s, # key cycles: {}",
+            now.elapsed().as_secs(),
+            key_presses_count
+        );
 
         thread::sleep(Duration::from_secs(120));
     }
