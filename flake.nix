@@ -23,6 +23,9 @@
           buildInputs = [
             rust-bin.stable.latest.default
             cargo2nix.defaultPackage.${system}
+
+            # X
+            xdotool
           ];
         };
 
