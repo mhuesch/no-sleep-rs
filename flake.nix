@@ -33,6 +33,17 @@
           (pkgs.rustBuilder.makePackageSet' {
             rustChannel = "stable";
             packageFun = import ./Cargo.nix;
+            packageOverrides =
+              let
+                no-sleep = pkgs.rustBuilder.rustLib.makeOverride {
+                  name = "no-sleep";
+                  overrideAttrs = drv: {
+                    propagatedBuildInputs =
+                      (drv.propagatedBuildInputs or [ ]) ++ [ pkgs.xdotool ];
+                  };
+                };
+              in
+              pkgs: pkgs.rustBuilder.overrides.all ++ [ no-sleep ];
           }).workspace.no-sleep {};
       });
 }
